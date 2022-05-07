@@ -27,7 +27,21 @@ void push(No **fila, int num){
     }
 }
 
+No* pop(No **fila){
+    No *remover = NULL;
+
+    if(*fila){
+        remover = *fila;
+        *fila = remover->proximo;
+    }
+    else{
+        printf("\tFila vazia\n");
+    }
+    return remover;
+}
+
 int main(void) {
-  printf("Hello World\n");
+    No *fila = NULL;
+    
   return 0;
 }
