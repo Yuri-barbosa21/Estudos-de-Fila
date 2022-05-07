@@ -6,7 +6,7 @@ typedef struct no{
     struct no *proximo;
 }No;
 
-void push(No **fila, int num){
+void Push(No **fila, int num){
     No *aux, *novo = malloc(sizeof(No));
     if(novo){
         novo->valor = num;
@@ -27,7 +27,7 @@ void push(No **fila, int num){
     }
 }
 
-No* pop(No **fila){
+No* Pop(No **fila){
     No *remover = NULL;
 
     if(*fila){
@@ -40,8 +40,41 @@ No* pop(No **fila){
     return remover;
 }
 
+void Imprimir(No *fila){
+    printf("\t--------------- FILA ---------------\n\t");
+    while(fila){
+        printf("%d ", fila->valor);
+        fila = fila->proximo;
+    }
+    printf("\n\t------------ FIM FILA -------------\n");
+}
+
 int main(void) {
-    No *fila = NULL;
+    No *r, *fila = NULL;
+    int opcao, valor;
+
+    do{
+        printf("\t0 - Sair\n\t1 - Inserir\n\t2 - Remover\n\t3 - Imprimir\n");
+        scanf("%d", &opcao);
+
+        switch(opcao){
+        case 1:
+            printf("Digite um valor: ");
+            scanf("%d", &valor);
+            Push(&fila, valor);
+            break;
+        case 2:
+            r = Pop(&fila);
+            if(r){
+                printf("Removido: %d\n", r->valor);
+                free(r);
+            }
+            break;
+        case 3:
+            Imprimir(fila);
+            break;
+        }
+    }while(opcao != 0);
     
   return 0;
 }
